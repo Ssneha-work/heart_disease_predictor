@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Heart Disease Predictor</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+  <div class="imag">
+    <img src="https://c.tenor.com/dO9JYv5q8xsAAAAM/heart-heart-pumping.gif" height=100% width=100% />
+  </div>
+  <div class="login">
+    <h1>Predict Heart Disease</h1>
+    <h3> Enter the following values to predict heart disease for a person</h3>
+
+    <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}" method="post">
+      <table align="center" cellpadding="6" cellspacing="6">
+        <tr>
+          <td>Age</td>
+          <td colspan="4"><input type="text" name="age" required="required" /></td>
+        </tr>
+        <tr>
+          <td>Sex</td>
+          <td colspan="2"><input type="radio" name="Sex" value="0" />0-Female</td>
+          <td colspan="2"><input type="radio" name="Sex" value="1" />1-Male</td>
+
+        </tr>
+        <tr>
+          <td>Chest Pain Type (cp)</td>
+          <td colspan="4"><select class="combo" name="cp">
+              <option value=""></option>
+              <option value="0">0:Typical angina</option>
+              <option value="1">1:Atypical angina</option>
+              <option value="2">2:Non-anginal pain</option>
+              <option value="3">3:Asymptomatic</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Trestbps in Hg (trestbps)</td>
+          <td colspan="4"><input type="text" name="trestbps" required="required" /></td>
+        </tr>
+        <tr>
+          <td> Serum cholestoral in mg/dl (chol)</td>
+          <td colspan="4"><input type="text" name="chol" required="required" /></td>
+        </tr>
+        <tr>
+          <td>Fasting blood sugar (fbs)</td>
+          <td colspan="2"><input type="radio" name="fbs" value="0" />0-&lt126 mg/dl</td>
+          <td colspan="2"><input type="radio" name="fbs" value="1" />1-&gt126 mg/dl</td>
+        </tr>
+        <tr>
+          <td>Resting Electrocardiographic Results (recg)</td>
+          <td colspan="4"><select class="combo" name="recg">
+              <option value=""></option>
+              <option value="0">0:Nothing to note</option>
+              <option value="1">1:ST-T Wave abnormality</option>
+              <option value="2">2:Possible or definite left ventricular hypertrophy</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td> Maximum heart rate achieved (thalach)</td>
+          <td colspan="4"><input type="text" name="thalch" required="required" /></td>
+        </tr>
+        <tr>
+          <td>Exercise Induced Angina (exang)</td>
+          <td colspan="2"><input type="radio" name="exang" value="0" />0-No</td>
+          <td colspan="2"><input type="radio" name="exang" value="1" />1-Yes</td>
+
+        </tr>
+        <tr>
+          <td> ST Depression induced by Exercise (oldpeak)</td>
+          <td colspan="4"><input type="text" name="oldpeak" required="required" /></td>
+        </tr>
+        <tr>
+          <td>Slope of the peak exercise ST segment (slope)</td>
+          <td colspan="4"><select class="combo" name="slope">
+              <option value=""></option>
+              <option value="0">0:Upsloping: better heart rate with excercise</option>
+              <option value="1">1:Flatsloping: minimal change</option>
+              <option value="2">2:Downsloping: signs of unhealthy heart</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Number of blood vessels coloured by flourosopy (ca)</td>
+          <td><input type="radio" name="ca" value="0" />0</td>
+          <td><input type="radio" name="ca" value="1" />1</td>
+          <td><input type="radio" name="ca" value="2" />2</td>
+          <td><input type="radio" name="ca" value="3" />3</td>
+        </tr>
+        <tr>
+          <td>Thalium Stress Result (thal)</td>
+          <td colspan="4"><select class="combo" name="thal">
+              <option value="" name="thal"></option>
+              <option value="1" name="thal">0:Normal</option>
+              <option value="2" name="thal">1:Fixed Defect</option>
+              <option value="3" name="thal">2:Reversible Defect</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+
+
+      <button type="submit" class="btn">Predict</button>
+    </form>
+
+    <h2>{{ prediction_text }}</h2>
+
+
+  </div>
+</body>
+
+</html>
